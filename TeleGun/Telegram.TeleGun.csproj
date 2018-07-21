@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55448611-464D-42F5-AC77-283B1592C665}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TeleGun</RootNamespace>
+    <AssemblyName>TeleGun</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" />
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ConnectionEventArgs.cs" />
+    <Compile Include="Common\Interfaces\ITMessage.cs" />
+    <Compile Include="TLGun.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessageGun.DomainModel.Tools\MessageGun.DomainModel.Tools.csproj">
+      <Project>{378b6c11-f514-421b-91b3-92a0dd3e7ab6}</Project>
+      <Name>MessageGun.DomainModel.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLSharp_recompiled\TeleSharp.Generator\TeleSharp.Generator.csproj">
+      <Project>{9be3b9d4-9ff6-4dc8-b9cc-eb2e3f390129}</Project>
+      <Name>TeleSharp.Generator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLSharp_recompiled\TeleSharp.TL\TeleSharp.TL.csproj">
+      <Project>{d6144517-91d2-4880-86df-e9ff5d7f383a}</Project>
+      <Name>TeleSharp.TL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TLSharp_recompiled\TLSharp.Core\TLSharp.Core.csproj">
+      <Project>{400d2544-1cc6-4d8a-a62c-2292d9947a16}</Project>
+      <Name>TLSharp.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

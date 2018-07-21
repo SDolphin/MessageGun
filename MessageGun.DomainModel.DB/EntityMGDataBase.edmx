@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MGDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MqMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Phone" Type="nchar" MaxLength="20" />
+          <Property Name="Header" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Body" Type="nchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeleMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_messages" Type="int" Nullable="false" />
+          <Property Name="Sended" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="UsersPhones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="10" />
+          <Property Name="LastName" Type="nchar" MaxLength="10" />
+          <Property Name="PhoneNumber" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Avaliable" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TeleMessages_ToTable">
+          <End Role="MqMessages" Type="Self.MqMessages" Multiplicity="1" />
+          <End Role="TeleMessages" Type="Self.TeleMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MqMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeleMessages">
+              <PropertyRef Name="id_messages" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MGDataBaseModelStoreContainer">
+          <EntitySet Name="MqMessages" EntityType="Self.MqMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeleMessages" EntityType="Self.TeleMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersPhones" EntityType="Self.UsersPhones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TeleMessages_ToTable" Association="Self.FK_TeleMessages_ToTable">
+            <End Role="MqMessages" EntitySet="MqMessages" />
+            <End Role="TeleMessages" EntitySet="TeleMessages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MGDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MqMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Header" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Body" Type="String" MaxLength="300" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TeleMessages" Relationship="Self.FK_TeleMessages_ToTable" FromRole="MqMessages" ToRole="TeleMessages" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeleMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_messages" Type="Int32" Nullable="false" />
+          <Property Name="Sended" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MqMessages" Relationship="Self.FK_TeleMessages_ToTable" FromRole="TeleMessages" ToRole="MqMessages" />
+        </EntityType>
+        <EntityType Name="UsersPhones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Avaliable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TeleMessages_ToTable">
+          <End Role="MqMessages" Type="Self.MqMessages" Multiplicity="1" />
+          <End Role="TeleMessages" Type="Self.TeleMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MqMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeleMessages">
+              <PropertyRef Name="id_messages" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MqMessages" EntityType="Self.MqMessages" />
+          <EntitySet Name="Table" EntityType="Self.Table" />
+          <EntitySet Name="TeleMessages" EntityType="Self.TeleMessages" />
+          <EntitySet Name="UsersPhones" EntityType="Self.UsersPhones" />
+          <AssociationSet Name="FK_TeleMessages_ToTable" Association="Self.FK_TeleMessages_ToTable">
+            <End Role="MqMessages" EntitySet="MqMessages" />
+            <End Role="TeleMessages" EntitySet="TeleMessages" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MGDataBaseModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="MqMessages">
+            <EntityTypeMapping TypeName="MGDataBaseModel.MqMessages">
+              <MappingFragment StoreEntitySet="MqMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table">
+            <EntityTypeMapping TypeName="MGDataBaseModel.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeleMessages">
+            <EntityTypeMapping TypeName="MGDataBaseModel.TeleMessages">
+              <MappingFragment StoreEntitySet="TeleMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="id_messages" ColumnName="id_messages" />
+                <ScalarProperty Name="Sended" ColumnName="Sended" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersPhones">
+            <EntityTypeMapping TypeName="MGDataBaseModel.UsersPhones">
+              <MappingFragment StoreEntitySet="UsersPhones">
+                <ScalarProperty Name="Avaliable" ColumnName="Avaliable" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

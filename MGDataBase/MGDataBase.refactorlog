@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f13766f0-2b21-4875-907e-ee44c7ba5e25" ChangeDateTime="03/23/2018 19:44:55">
+    <Property Name="ElementName" Value="[dbo].[MqMessages].[Header]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MqMessages]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Time" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="36326555-e257-4900-ac98-5bef0549a4f1" ChangeDateTime="03/23/2018 21:18:23">
+    <Property Name="ElementName" Value="[dbo].[UsersPhones].[PhoneNumer]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UsersPhones]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PhoneNumber" />
+  </Operation>
+</Operations>

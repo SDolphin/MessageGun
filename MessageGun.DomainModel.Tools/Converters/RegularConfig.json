@@ -1,0 +1,7 @@
+{
+  "Phone": "(?<=<NS1:Address>)(.*)(?=</NS1:Address>)",
+  "Header": "(?<=<NS1:Header>)(.*)(?=</NS1:Header>)",
+  //"Body": "(?<=<NS1:Body>)((?:.|\n)*)(?=</NS1:Body>)",
+  "Body": "((?<=<NS1:Body>)((?:.|\n)*)(?=</NS1:Body>))|((?<=<NS1:Body lang=\".{2}\">)((?:.|\n)*)(?=</NS1:Body>))",
+  "Time": "(?<=<NS1:RqTm>)(.*)(?=</NS1:RqTm>)"
+}

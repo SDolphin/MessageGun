@@ -1,0 +1,16 @@
+﻿
+        //private static int api_id = 117156;
+        //private static string api_hash = "48a187aa97419483a8a61f9b7c3d327a";
+        //private static string myPhone = "79169557171";
+        //private static string pavel =   "79772696869";
+
+
+
+        //private static int api_id = 239878;
+        //private static string api_hash = "bcef0a7743abdf9c3f058e190ca2e158";
+        //private static string myPhone = "79262058640";
+
+
+        private static int api_id = 116022;
+        private static string api_hash = "efa2c40a505570737a4e5ab33a4917cf";
+        private static string myPhone = "79162022804";
